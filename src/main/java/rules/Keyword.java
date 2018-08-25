@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Keyword {
     @XmlValue
-    protected String value;
+    public String value;
 	@XmlAttribute
 	private String wordMatch;
 
