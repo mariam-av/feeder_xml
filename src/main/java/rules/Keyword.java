@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlValue;
 public class Keyword {
     @XmlValue
     public String value;
-	@XmlAttribute
+	@XmlAttribute(required=true)
 	private String wordMatch;
 
 	public String getWordMatch() {

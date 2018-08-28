@@ -12,17 +12,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Match")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Match {
-	@XmlAttribute(name ="MatchIn")
+	@XmlAttribute(name ="MatchIn",required = true)
 	public String matchIn;
-	@XmlAttribute(name ="MatchLimit")
+	@XmlAttribute(name ="MatchLimit",required = true)
 	public String matchLimit;
-	@XmlAttribute(name ="MatchUnit")
+	@XmlAttribute(name ="MatchUnit",required = true)
 	public String matchUnit;
-	@XmlAttribute(name ="Weight")
-	public String weight;
-	@XmlAttribute(name ="WeightRepeat")
+	@XmlAttribute(name ="Weight",required = true)
+	public Double weight;
+	@XmlAttribute(name ="WeightRepeat",required = true)
 	public String weightRepeat;
-	@XmlElements({@XmlElement(name="keyword",type=Keyword.class)})
+	@XmlElements({@XmlElement(name="keyword",type=Keyword.class,required = true)})
 	public List<Keyword> keywords;
 	public String getMatchIn() {
 		return matchIn;
@@ -42,10 +42,10 @@ public class Match {
 	public void setMatchUnit(String matchUnit) {
 		this.matchUnit = matchUnit;
 	}
-	public String getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
-	public void setWeight(String weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 	public String getWeightRepeat() {
