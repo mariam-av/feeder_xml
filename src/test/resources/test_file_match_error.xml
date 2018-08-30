@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Match MatchIn="title,summary,body" MatchLimit="body:100"
+MatchUnit="Word"  Weight="asdasd" >
+<keyword >WiMAX</keyword>
+<keyword wordMatch="wholeword">Wi-MAX</keyword>
+</Match>

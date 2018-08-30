@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Match" type="match"/>
+
+  <xs:element name="keyword" type="keyword"/>
+
+  <xs:complexType name="match">
+    <xs:sequence>
+      <xs:element ref="keyword" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="MatchIn" type="xs:string" use="required"/>
+    <xs:attribute name="MatchLimit" type="xs:string" use="required"/>
+    <xs:attribute name="MatchUnit" type="xs:string" use="required"/>
+    <xs:attribute name="Weight" type="xs:double" use="required"/>
+    <xs:attribute name="WeightRepeat" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="keyword">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="wordMatch" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+
