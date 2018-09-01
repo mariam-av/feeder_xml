@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rule>
+  <Tag id="wimax_id">WiMax</Tag>
+  <Match MatchIn="title,summary,body" MatchLimit="body:100"
+         MatchUnit="Word" WeightRepeat="no" Weight="1.0" >
+    <keyword wordMatch="wholeword">WiMAX</keyword>
+    <keyword wordMatch="wholeword">Wi-MAX</keyword>
+  </Match>
+</Rule>

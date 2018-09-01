@@ -6,21 +6,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-@XmlRootElement(name = "Keyword")
+@XmlRootElement(name = "Tag")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Keyword {
+public class Tag {
   @XmlValue
-  private String value;
-  @XmlAttribute(name= "WordMatch",required = true)
-  private String wordMatch;
-
-  public String getWordMatch() {
-    return wordMatch;
-  }
-
-  public void setWordMatch(String wordMatch) {
-    this.wordMatch = wordMatch;
-  }
+  public String value;
+  @XmlAttribute(required = true)
+  private String id;
 
   public String getValue() {
     return value;
@@ -30,9 +22,19 @@ public class Keyword {
     this.value = value;
   }
 
-  @Override
-  public String toString() {
-    return "wordMatch = " + wordMatch + ", value = " + value;
+  public String getId() {
+    return id;
   }
 
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "Tag{" +
+        "value='" + value + '\'' +
+        ", id='" + id + '\'' +
+        '}';
+  }
 }

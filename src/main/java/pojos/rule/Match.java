@@ -12,17 +12,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Match {
   @XmlAttribute(name = "MatchIn", required = true)
-  public String matchIn;
+  private String matchIn;
   @XmlAttribute(name = "MatchLimit", required = true)
-  public String matchLimit;
+  private String matchLimit;
   @XmlAttribute(name = "MatchUnit", required = true)
-  public String matchUnit;
+  private String matchUnit;
   @XmlAttribute(name = "Weight", required = true)
-  public Double weight;
+  private Double weight;
   @XmlAttribute(name = "WeightRepeat", required = true)
-  public String weightRepeat;
-  @XmlElements( {@XmlElement(name = "keyword", type = Keyword.class, required = true)})
-  public List<Keyword> keywords;
+  private String weightRepeat;
+
+  @XmlElements( {@XmlElement(name = "Keyword", type = Keyword.class, required = true)})
+  private List<Keyword> keywords;
 
   public String getMatchIn() {
     return matchIn;

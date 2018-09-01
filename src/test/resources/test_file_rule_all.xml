@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rule>
+  <Tag id="wimax_id">WiMax</Tag>
+  <Match MatchIn="title,summary,body" MatchLimit="body:100"
+         MatchUnit="Word" WeightRepeat="no" Weight="1.0" >
+    <keyword wordMatch="wholeword">WiMAX</keyword>
+    <keyword wordMatch="wholeword">Wi-MAX</keyword>
+  </Match>
+  <Condition>
+    <AndSet>
+      <Match MatchIn="title" WeightRepeat="no" Weight="1.0"
+             RelevanceRepeat="no" RelevanceFactor="1.0" Relevance="1.0">
+        <Keyword WordMatch="wholeword">WiMAX</Keyword>
+        <Keyword WordMatch="wholeword">Wi-MAX</Keyword>
+        <Keyword WordMatch="wholeword">Wi MAX</Keyword>
+      </Match>
+        <Keyword WordMatch="wholeword">802.16e</Keyword>
+    </AndSet>
+  </Condition>
+</Rule>
