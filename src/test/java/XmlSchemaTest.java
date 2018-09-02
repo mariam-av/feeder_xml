@@ -3,10 +3,14 @@ import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
+import pojos.ParentNode;
 import pojos.rule.Keyword;
 import pojos.rule.Match;
 import pojos.rule.Rule;
@@ -14,7 +18,7 @@ import validation.RuleValidation;
 
 public class XmlSchemaTest {
 
-  @Test
+  //@Test
   public void matchTest() throws JAXBException, SAXException {
     JAXBContext context = JAXBContext.newInstance(Match.class);
     Unmarshaller unmarshall = context.createUnmarshaller();
@@ -31,7 +35,7 @@ public class XmlSchemaTest {
     System.out.println(rule.toString());
   }
 
-  @Test
+  //@Test
   public void schemaTest() throws JAXBException, SAXException {
     JAXBContext context = JAXBContext.newInstance(Rule.class);
     Unmarshaller unmarshall = context.createUnmarshaller();
@@ -42,7 +46,7 @@ public class XmlSchemaTest {
 
   }
 
-  @Test
+  //@Test
   public void keywordTest() throws JAXBException {
     JAXBContext context = JAXBContext.newInstance(Keyword.class);
     Unmarshaller unmarshall = context.createUnmarshaller();
@@ -52,7 +56,7 @@ public class XmlSchemaTest {
     System.out.println(keyword.toString());
   }
 
-  @Test
+//  @Test
   public void ruleTest() throws JAXBException {
     JAXBContext context = JAXBContext.newInstance(Rule.class);
     Unmarshaller unmarshall = context.createUnmarshaller();
@@ -60,6 +64,17 @@ public class XmlSchemaTest {
     File file = new File(classLoader.getResource("test_file_rule.xml").getFile());
     Rule rule = (Rule) unmarshall.unmarshal(file);
     System.out.println(rule.toString());
+  }
+
+  
+  @Test
+  public void ruleTest2() throws JAXBException {
+    JAXBContext context = JAXBContext.newInstance(ParentNode.class);
+    Unmarshaller unmarshall = context.createUnmarshaller();
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource("test.xml").getFile());
+    ParentNode rule = (ParentNode) unmarshall.unmarshal(file);
+    System.out.println(rule);
   }
 
 }

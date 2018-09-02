@@ -1,5 +1,6 @@
 package pojos.rule;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,9 +9,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import pojos.Node;
+
 @XmlRootElement(name = "Match")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Match {
+public class Match  extends Node{
   @XmlAttribute(name = "MatchIn", required = true)
   private String matchIn;
   @XmlAttribute(name = "MatchLimit", required = true)
@@ -23,7 +26,7 @@ public class Match {
   private String weightRepeat;
 
   @XmlElements( {@XmlElement(name = "Keyword", type = Keyword.class, required = true)})
-  private List<Keyword> keywords;
+  private List<Node> keywords = new ArrayList<>();
 
   public String getMatchIn() {
     return matchIn;
@@ -65,11 +68,11 @@ public class Match {
     this.weightRepeat = weightRepeat;
   }
 
-  public List<Keyword> getKeywords() {
+  public List<Node> getKeywords() {
     return keywords;
   }
 
-  public void setKeywords(List<Keyword> keywords) {
+  public void setKeywords(List<Node> keywords) {
     this.keywords = keywords;
   }
 

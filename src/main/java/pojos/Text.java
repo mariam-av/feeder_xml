@@ -6,7 +6,7 @@ public class Text {
   private String body;
   private Boolean matchInBody;
   private Boolean matchInTitle;
-  private Boolean matched;
+  private Boolean matched = false;
   private Integer matchesInBody;
   private Integer matchesInTitle;
 

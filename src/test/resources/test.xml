@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition>
+	<AndSet>
+		<OrSet>
+			<Match MatchIn="title,body,summary" MatchLimit="body:100" MatchUnit="Word" WeightRepeat="no" Weight="1.0" RelevanceRepeat="no" RelevanceFactor="1.0" Relevance="1.0">
+				<Keyword WordMatch="wholeword">Manchester United</Keyword>
+				<Keyword WordMatch="wholeword">Man. United</Keyword>
+				<Keyword WordMatch="wholeword">Man United</Keyword>
+				<Keyword WordMatch="wholeword">Man. Untd</Keyword>
+				<Keyword WordMatch="wholeword">Man Untd</Keyword>
+			</Match>
+			<Match MatchIn="title,body,summary" WeightRepeat="yes" Weight="0.4" RelevanceRepeat="no" RelevanceFactor="1.0" Relevance="1.0">
+				<Keyword WordMatch="wholeword">Manchester United</Keyword>
+				<Keyword WordMatch="wholeword">Man. United</Keyword>
+				<Keyword WordMatch="wholeword">Man United</Keyword>
+				<Keyword WordMatch="wholeword">Man. Untd</Keyword>
+				<Keyword WordMatch="wholeword">Man Untd</Keyword>
+				<Keyword WordMatch="wholeword">The Red Devils</Keyword>
+			</Match>
+			<Match MatchIn="title,body,summary" MatchLimit="body:300" MatchUnit="Word" WeightRepeat="no" Weight="1.0" RelevanceRepeat="no" RelevanceFactor="1.0" Relevance="1.0">
+				<Proximity WindowSize="6">
+					<OrSet>
+						<Match MatchIn="title,body,summary">
+							<Keyword WordMatch="wholeword">Manchester United</Keyword>
+							<Keyword WordMatch="wholeword">Man. United</Keyword>
+							<Keyword WordMatch="wholeword">Man United</Keyword>
+							<Keyword WordMatch="wholeword">Man. Untd</Keyword>
+							<Keyword WordMatch="wholeword">Man Untd</Keyword>
+							<Keyword WordMatch="wholeword">The Red Devils</Keyword>
+						</Match>
+					</OrSet>
+					<OrSet>
+						<Match MatchIn="title,body,summary">
+							<Keyword WordMatch="wholeword">Football club</Keyword>
+							<Keyword WordMatch="wholeword">soccer club</Keyword>
+							<Keyword WordMatch="exact">FC</Keyword>
+							<Keyword WordMatch="exact">F.C.</Keyword>
+						</Match>
+					</OrSet>
+				</Proximity>
+			</Match>
+		</OrSet>
+		<NotKey>
+			<Match MatchIn="title,body,summary" MatchLimit="body:100" MatchUnit="Word" WeightRepeat="no" Weight="1.0" RelevanceRepeat="no" RelevanceFactor="1.0" Relevance="1.0">
+				<Keyword WordMatch="wholeword">United of Manchester</Keyword>
+			</Match>
+		</NotKey>
+	</AndSet>
+</Condition>

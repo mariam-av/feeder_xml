@@ -20,7 +20,7 @@ public class KeywordCheck {
       while (matcher.find()) {
         countInTitle++;
       }
-    } else if (wordMatchAttr.equals(WordMatch.WHOLEWORD.name())) {
+    } else if (wordMatchAttr.equals(WordMatch.WHOLEWORD.toString())) {
       Matcher matcher = Pattern.compile("(^|\\s)" + value + "(\\s|$)", Pattern.CASE_INSENSITIVE)
           .matcher(text.getBody());
       while (matcher.find()) {

@@ -6,9 +6,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
+import pojos.Node;
+
 @XmlRootElement(name = "Keyword")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Keyword {
+public class Keyword extends Node {
   @XmlValue
   private String value;
   @XmlAttribute(name= "WordMatch",required = true)
