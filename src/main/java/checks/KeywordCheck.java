@@ -45,8 +45,6 @@ public class KeywordCheck {
       text.setMatchesInTitle(countInTitle);
       text.setMatched(true);
     }
-    System.out.println(countInBody);
-    System.out.println(countInTitle);
     return text;
 
   }

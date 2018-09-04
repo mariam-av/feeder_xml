@@ -22,6 +22,8 @@ import pojos.rule.Keyword;
 import pojos.rule.Match;
 
 public class ParseUnknownStructure {
+	private static String strString = "";
+
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -30,48 +32,73 @@ public class ParseUnknownStructure {
 		Document document = builder.parse(new File(classLoader.getResource("test.xml").getFile()));
 
 		document.getDocumentElement().normalize();
-
 		NodeList nodelist = document.getChildNodes();
 
 		System.out.println("============================");
-		visitChildNodes(nodelist, document.getAttributes());
+		visitChildNodes(document, nodelist, document.getAttributes());
 	}
 
 	public static boolean matchParser(NamedNodeMap attr) {
 		return true;
 	}
 
-	// This function is called recursively
-	private static boolean visitChildNodes(NodeList nList, NamedNodeMap parAttr) {
+	private static boolean visitChildNodes(Document document, NodeList nList, NamedNodeMap parAttr) {
 		boolean result = false;
+		Text text = new Text();
+		text.setTitle("Manchester United");
+		text.setBody("Man Untd");
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node node = nList.item(temp);
-			// System.out.println("NODE NAME " + node.getNodeName());
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				System.out.println("NODE NAME " + node.getNodeName());
 				switch (node.getNodeName()) {
 				case "Keyword":
-					if (node.hasAttributes()) {
-						String attr = node.getAttributes().getNamedItem("WordMatch").getNodeValue();
-						System.out.println(node.getTextContent());
-						System.out.println(attr);
-						Text text = new Text();
-						text.setTitle("Manchester United");
-						text.setBody("Man Untd");
-						//xckel parAttr@ checkum
-						
-						System.out.println(KeywordCheck.wordMatch(text, attr, node.getTextContent()).getMatched());
-						result &= KeywordCheck.wordMatch(text, attr, node.getTextContent()).getMatched();
-					}
+					System.out.println("=============");
+					String attr = node.getAttributes().getNamedItem("WordMatch").getNodeValue();
+					text.setMatched(false);
+					// xckel parAttr@ checkum
+					// System.out.println(KeywordCheck.wordMatch(text, attr,
+					// node.getTextContent()).getMatched());
+					result = KeywordCheck.wordMatch(text, attr, node.getTextContent()).getMatched();
+					strString += (result) ? "T" : "F";
 					break;
 				case "Match":
-					if (node.hasChildNodes()) {
-						visitChildNodes(node.getChildNodes(), node.getAttributes());
-					}
+					strString += "(";
+					System.out.println("MATCHING " + node.getNodeName());
+					visitChildNodes(document, node.getChildNodes(), node.getAttributes());
+
+					strString += ")";
+					
+//					for (temp = 0; temp < node.getChildNodes().getLength(); temp++) {
+//						Node nodeInner = node.getChildNodes().item(temp);
+//						if (node.getNodeType() == Node.ELEMENT_NODE) {
+//							switch (nodeInner.getNodeName()) {
+//							case "Keyword":
+//								attr = nodeInner.getAttributes().getNamedItem("WordMatch").getNodeValue();
+//								text.setMatched(false);
+//								// xckel parAttr@ checkum
+//								// System.out.println(KeywordCheck.wordMatch(text,
+//								// attr, node.getTextContent()).getMatched());
+//								result = KeywordCheck.wordMatch(text, attr, nodeInner.getTextContent()).getMatched();
+//								strString += (result) ? "T" : "F";
+//								System.out.println(strString);
+//								break;
+//							}
+//						}
+//					}
+					// if (node.hasChildNodes()) {
+					// visitChildNodes(document, node.getChildNodes(),
+					// node.getAttributes());
+					// }
 					break;
 				case "OrSet":
+					strString += " || ";
 					break;
 				case "AndSet":
+					strString += " && ";
+					break;
+				case "NotKey":
+					strString += " ! ";
 					break;
 				case "null":
 					break;
@@ -80,11 +107,12 @@ public class ParseUnknownStructure {
 					break;
 				}
 				if (node.hasChildNodes()) {
-					visitChildNodes(node.getChildNodes(), node.getAttributes());
+					visitChildNodes(document, node.getChildNodes(), node.getAttributes());
 				}
 
 			}
 		}
+		System.out.println(strString);
 		return result;
 	}
 }
